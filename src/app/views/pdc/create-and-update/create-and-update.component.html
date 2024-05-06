@@ -1,0 +1,215 @@
+<form id="submit" [formGroup]="preDcBillsForm" (ngSubmit)="onSubmitPDC()" class="row g-3 needs-validation" >
+    <div >
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="col-lg-3">
+                    <mat-form-field>
+                        <mat-label>Choose a DC date</mat-label>
+                        <input matInput [matDatepicker]="picker" formControlName="DCDate"
+                            [ngClass]="{ 'is-invalid': preDcBillsForm.controls.DCDate.errors }">
+                        <mat-hint>MM/DD/YYYY</mat-hint>
+                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                        <div *ngIf="preDcBillsForm.controls.DCDate.errors" class="invalid-feedback">
+                            <div *ngIf="preDcBillsForm.controls.DCDate.errors.required">
+                                <i class="fa fa-exclamation-circle mr-2"></i>
+                                DC Date
+                                is
+                                required
+                            </div>
+                        </div>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-lg-3">
+                    <label>DC No</label>
+                    <input type="text" formControlName="DC_No" class="form-control"
+                        [ngClass]="{ 'is-invalid': preDcBillsForm.controls.DC_No.errors }" />
+                    <div *ngIf="preDcBillsForm.controls.DC_No.errors" class="invalid-feedback">
+                        <div *ngIf="preDcBillsForm.controls.DC_No.errors.required">
+                            <i class="fa fa-exclamation-circle mr-2"></i>
+                            DC NO
+                            is
+                            required
+                        </div>
+                    </div>
+                </div>
+                <ng-container formGroupName="company">
+                <div class="col-lg-3">
+                    <label>Company Name</label>
+                    <input type="text" formControlName="CompanyName" class="form-control"
+                        [ngClass]="{ 'is-invalid': preDcBillsForm.get('company.CompanyName')?.invalid }" />
+                    <div *ngIf="preDcBillsForm.get('company.CompanyName').invalid && preDcBillsForm.get('company.CompanyName')?.touched "
+                        class="invalid-feedback">
+                        <i class="fa fa-exclamation-circle mr-2"></i>
+                        DC NO
+                        is
+                        required
+
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <label>Address Line1</label>
+                    <input type="text" formControlName="AddressLine1" class="form-control"
+                        [ngClass]="{ 'is-invalid': preDcBillsForm.get('company.AddressLine1').invalid  }" />
+                    <div *ngIf="preDcBillsForm.get('company.AddressLine1').invalid && preDcBillsForm.get('company.AddressLine1').touched "
+                        class="invalid-feedback">
+                        <i class="fa fa-exclamation-circle mr-2"></i>
+                        AddressLine1
+                        is
+                        required
+
+                    </div>
+                </div>
+            </ng-container>
+            </div>
+            <div formGroupName="company" class="col-lg-12">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <label>Address Line2</label>
+                        <input type="text" formControlName="AddressLine2" class="form-control"
+                            [ngClass]="{ 'is-invalid': preDcBillsForm.get('company.AddressLine2').invalid  }" />
+                        <div *ngIf="preDcBillsForm.get('company.AddressLine2').invalid && preDcBillsForm.get('company.AddressLine2').touched "
+                            class="invalid-feedback">
+                            <i class="fa fa-exclamation-circle mr-2"></i>
+                            AddressLine2
+                            is
+                            required
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <label>State</label>
+                        <input type="text" formControlName="State" class="form-control"
+                            [ngClass]="{ 'is-invalid': preDcBillsForm.get('company.State').invalid }" />
+                        <div *ngIf="preDcBillsForm.get('company.State').invalid && preDcBillsForm.get('company.State').touched "
+                            class="invalid-feedback">
+                            <i class="fa fa-exclamation-circle mr-2"></i>
+                            State
+                            is
+                            required
+
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <label>City</label>
+                        <input type="text" formControlName="City" class="form-control"
+                            [ngClass]="{ 'is-invalid': preDcBillsForm.get('company.City').invalid }" />
+                        <div *ngIf="preDcBillsForm.get('company.City').invalid && preDcBillsForm.get('company.City').touched "
+                            class="invalid-feedback">
+
+                            <i class="fa fa-exclamation-circle mr-2"></i>
+                            City
+                            is
+                            required
+
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <label>Pincode</label>
+                        <input type="text" formControlName="Pincode" class="form-control"
+                            [ngClass]="{ 'is-invalid': preDcBillsForm.get('company.Pincode').invalid }" />
+                        <div *ngIf="preDcBillsForm.get('company.Pincode').invalid && preDcBillsForm.get('company.Pincode').touched "
+                            class="invalid-feedback">
+                            <i class="fa fa-exclamation-circle mr-2"></i>
+                            Pincode
+                            is
+                            required
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div formArrayName="productDetails">
+
+        <div *ngFor="let row of preDcBillsForm.controls.productDetails.controls; let i=index">
+            <div class="col-12">
+
+                <div [formGroupName]="i">
+                    <div class="row">
+                        <div class="col-md-2">
+
+                            <label>SI No</label>
+                            <input type="text" [disabled]="true" formControlName="SI_NO" class="form-control"
+                                [ngClass]="{ 'is-invalid': row.controls.SI_NO.errors }" />
+                            <div *ngIf="row.controls.SI_NO.errors" class="invalid-feedback">
+                                <div *ngIf="row.controls.SI_NO.errors.required">
+                                    <i class="fa fa-exclamation-circle mr-2"></i>
+                                    SI NO
+                                    is
+                                    required
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label>Item Description</label>
+                            <input type="text" formControlName="Item_Description" class="form-control"
+                                [ngClass]="{ 'is-invalid': row.controls.Item_Description.errors }" />
+                            <div *ngIf="row.controls.Item_Description.errors" class="invalid-feedback">
+                                <div *ngIf="row.controls.Item_Description.errors.required"><i
+                                        class="fa fa-exclamation-circle mr-2"></i>
+                                    Item Description is
+                                    required</div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label>Grade</label>
+                                <input type="text" formControlName="Grade" class="form-control"
+                                    [ngClass]="{ 'is-invalid': row.controls.Grade.errors }" />
+                                <div *ngIf="row.controls.Grade.errors" class="invalid-feedback">
+                                    <div *ngIf="row.controls.Grade.errors.required"><i
+                                            class="fa fa-exclamation-circle mr-2"></i>
+                                        Grade is
+                                        required</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label>Heat Number</label>
+                                <input type="text" formControlName="HeatNumber" class="form-control"
+                                    [ngClass]="{ 'is-invalid': row.controls.HeatNumber.errors }" />
+                                <div *ngIf="row.controls.HeatNumber.errors" class="invalid-feedback">
+                                    <div *ngIf="row.controls.HeatNumber.errors.required"><i
+                                            class="fa fa-exclamation-circle mr-2"></i>
+                                        Heat Number is
+                                        required</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label>Quantity</label>
+                                <input type="text" formControlName="Quantity" class="form-control"
+                                    [ngClass]="{ 'is-invalid': row.controls.Quantity.errors }" />
+                                <div *ngIf="row.controls.Quantity.errors" class="invalid-feedback">
+                                    <div *ngIf="row.controls.Quantity.errors.required"><i
+                                            class="fa fa-exclamation-circle mr-2"></i>
+                                        Quantity is
+                                        required</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <button class="btn btn-secondary" (click)="onAddProduct()">Add</button>
+                                <button class="btn btn-danger" *ngIf="i>0" (click)="removeProduct(i)">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    
+<button class="btn btn-primary" type="submit">submit</button>
+</form>
