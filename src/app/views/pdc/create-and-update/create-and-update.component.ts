@@ -9,6 +9,7 @@ import { RowComponent, ColComponent, CardComponent, CardHeaderComponent, CardBod
 import {PDC} from '../../../interfaces/pdc.form'
 import {PDCService} from "../../../services/pdc.service"
 import { HttpClientModule } from '@angular/common/http';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-and-update',
@@ -24,7 +25,7 @@ export class CreateAndUpdateComponent implements OnInit {
 
   SI_No = 1;
 
-  constructor(private formBuilder: FormBuilder,private PDCservice:PDCService) {
+  constructor(private formBuilder: FormBuilder,private PDCservice:PDCService,private $router: Router,private $route: ActivatedRoute,) {
   }
 
   ngOnInit() {
@@ -75,5 +76,9 @@ export class CreateAndUpdateComponent implements OnInit {
     this.PDCservice.createPDC(this.preDcBillsForm.getRawValue()).then(res=>{
       console.log(res)
     })
+    this.$router.navigate(['PDC/list'])
   }
+  backto() {
+		this.$router.navigate(['PDC/list'])
+	}
 }

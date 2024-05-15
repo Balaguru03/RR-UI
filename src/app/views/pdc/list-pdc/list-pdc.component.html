@@ -9,8 +9,8 @@
             </c-card-header>
             <c-card-body>
                 <mat-form-field>
-                    <mat-label>Filter</mat-label>
-                    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+                    <span matPrefix><span class="material-icons"> search </span> &nbsp;</span>
+                    <input matInput (keyup)="applyFilter($event)" placeholder="Filter" #input>
                 </mat-form-field>
 
                 <div class="mat-elevation-z8">
@@ -42,7 +42,15 @@
                         <!-- Fruit Column -->
                         <ng-container matColumnDef="Action">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
-                            <td mat-cell *matCellDef="let row"> <a  class="btn btn-primary" routerLink = "../update">Modify PDC</a>  </td>
+                            <td mat-cell *matCellDef="let row; let i = index"> 
+                                <button>
+                                    <!-- <i  class="fas fa-pen" routerLink = "../update"></i> -->
+                                    <mat-icon color="primary" routerLink = "../update">create</mat-icon>
+                                </button>  
+                                <button>
+                                    <mat-icon color="primary" (click)="viewValue()">visibility</mat-icon>
+                                </button>  
+                            </td>
                         </ng-container>
 
                         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

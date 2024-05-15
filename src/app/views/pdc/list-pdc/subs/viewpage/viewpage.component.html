@@ -1,0 +1,12 @@
+<!-- <div>
+	<button type="button" class="close()">
+		<span aria-hidden="true">&times;</span>
+	</button>
+</div> -->
+
+<c-card-header>
+    <strong class="d-grid  d-md-flex justify-content-md-center">View Client Details</strong>
+</c-card-header>
+<c-card-body>
+   <label *ngFor="let viewValue of viewValues">{{viewValue._id}}</label>
+</c-card-body>

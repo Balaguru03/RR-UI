@@ -8,6 +8,10 @@ import { RowComponent, ColComponent, CardComponent, CardBodyComponent, CardHeade
 import { RouterLink } from '@angular/router';
 import { PDCService } from 'src/app/services/pdc.service';
 import { HttpClientModule } from '@angular/common/http';
+import { MatIcon } from '@angular/material/icon';
+import { MatDialog } from '@angular/material/dialog'
+import { ViewpageComponent } from "./subs/viewpage/viewpage.component"
+import Swal from "sweetalert2";
 
 
 export interface PDCData {
@@ -21,7 +25,7 @@ export interface PDCData {
   selector: 'app-list-pdc',
   standalone: true,
   providers:[PDCService],
-  imports: [RowComponent, ColComponent,CardComponent,CardHeaderComponent, CardBodyComponent,MatFormFieldModule, MatInputModule, MatTableModule, MatSortModule, MatPaginatorModule,RouterLink,HttpClientModule],
+  imports: [RowComponent, ColComponent,CardComponent,CardHeaderComponent, CardBodyComponent,MatFormFieldModule, MatInputModule, MatTableModule, MatSortModule, MatPaginatorModule,RouterLink,HttpClientModule,MatIcon],
   templateUrl: './list-pdc.component.html',
   styleUrl: './list-pdc.component.scss'
 })
@@ -34,7 +38,7 @@ export class ListPdcComponent implements OnInit{
   @ViewChild(MatSort)
   sort!: MatSort;
 
-  constructor(private PDCservice:PDCService) {
+  constructor(private PDCservice:PDCService, public dialog: MatDialog) {
     // Create 100 users
     
    
@@ -73,6 +77,16 @@ export class ListPdcComponent implements OnInit{
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+  viewValue(){
+    this.PDCservice.getPDCList().then((response:any)=>{
+      this.pdcData = response.data.map((rest:any)=>{
+        const dialogRef = this.dialog.open(ViewpageComponent,{
+          width: "120vh",
+          height: "50vh"
+        })
+      })
+    })
   }
 }
 
