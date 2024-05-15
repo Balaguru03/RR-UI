@@ -1,12 +1,47 @@
 <!-- <div>
 	<button type="button" class="close()">
-		<span aria-hidden="true">&times;</span>
+		<p aria-hidden="true">&times;</p>
 	</button>
 </div> -->
 
 <c-card-header>
-    <strong class="d-grid  d-md-flex justify-content-md-center">View Client Details</strong>
+	<strong class="d-grid  d-md-flex justify-content-md-center">View Client Details</strong>
 </c-card-header>
 <c-card-body>
-   <label *ngFor="let viewValue of viewValues">{{viewValue._id}}</label>
+	<div class="row">
+		<div class="col-lg-6">
+			<div>
+				<p>DC Date: {{viewValue.DCDate}}</p>
+			</div>
+			<div>
+				<p>DC Number: {{viewValue.DC_No}}</p>
+			</div>
+			<div>
+				<b><u><h3>Company Details</h3></u></b>
+				<div>
+					<p>Company Name: {{viewValue.company.CompanyName}}</p>
+				</div>
+				<div>
+					<p>Address: {{viewValue.company.AddressLine1}}, {{viewValue.company.AddressLine2}}
+						,{{viewValue.company.City}} </p>
+					<!-- <br /> -->
+					<p>{{viewValue.company.State}} - {{viewValue.company.Pincode}} </p>
+				</div>
+			</div>
+
+
+		</div>
+		<div class="col-lg-6">
+			<div>
+				<b><u><h3>Product Details</h3></u></b>
+				<ng-container *ngFor = "let products of viewValue.productDetails">
+					<p>SI_NO: {{products.SI_NO}}</p>
+					<p>Item_Description: {{products.Item_Description}}</p>
+					<p>Grade : {{products.Grade}}</p>
+					<p>HeatNumber : {{products.HeatNumber}}</p>
+					<p>Quantity : {{products.Quantity}}</p>
+				</ng-container>
+			</div>
+		</div>
+	</div>
 </c-card-body>

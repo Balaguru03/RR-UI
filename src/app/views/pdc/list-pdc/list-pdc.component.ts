@@ -33,6 +33,7 @@ export class ListPdcComponent implements OnInit{
   displayedColumns: string[] = ['SNO', 'DC_NO', 'Company_Name','Status', 'Action'];
   dataSource: MatTableDataSource<any>;
   pdcData = []
+  pdcListData = []
 
   @ViewChild(MatPaginator) paginator!: MatPaginator ;
   @ViewChild(MatSort)
@@ -50,6 +51,7 @@ export class ListPdcComponent implements OnInit{
   }
   async getPdcData(){
    await this.PDCservice.getPDCList().then((response:any)=>{
+    this.pdcListData = response.data;
       this.pdcData = response.data.map((rest:any)=>{
         return {
           "DC_No":rest['DC_No'],
@@ -78,14 +80,12 @@ export class ListPdcComponent implements OnInit{
       this.dataSource.paginator.firstPage();
     }
   }
-  viewValue(){
-    this.PDCservice.getPDCList().then((response:any)=>{
-      this.pdcData = response.data.map((rest:any)=>{
-        const dialogRef = this.dialog.open(ViewpageComponent,{
-          width: "120vh",
-          height: "50vh"
-        })
-      })
+  viewValue(id:string){
+    let viewPdc =  this.pdcListData.filter((findPdcValueById:any)=>findPdcValueById._id==id)[0]
+    const dialogRef = this.dialog.open(ViewpageComponent,{
+      width: "120vh",
+      height: "50vh",
+      data:viewPdc
     })
   }
 }
