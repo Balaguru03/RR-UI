@@ -54,7 +54,7 @@ CoreUI is meant to be the UX game changer. Pure & transparent code is devoid of 
 
 ## CoreUI PRO Angular Admin Templates
 
-| Default Theme                                                                                                                                                                      | Light Theme                                                                                                                                                                    |
+| Default Theme                                                                                                                         developer                                             | Light Theme                                                                                                                                                                    |
 |------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | [![CoreUI PRO Angular Admin Template](https://coreui.io/images/templates/coreui_pro_default_light_dark.webp)](https://coreui.io/product/angular-dashboard-template/?theme=default) | [![CoreUI PRO Angular Admin Template](https://coreui.io/images/templates/coreui_pro_light_light_dark.webp)](https://coreui.io/product/angular-dashboard-template/?theme=light) |
 
